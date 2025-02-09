@@ -25,16 +25,23 @@ export const ganttDateRange = (
   let minTaskDate: Date | null = null;
   let maxTaskDate: Date | null = null;
   for (const task of tasks) {
-    if (task.type !== "empty") {
-      if (!minTaskDate || task.start < minTaskDate) {
-        minTaskDate = task.start;
-      }
-
-      if (!maxTaskDate || task.end > maxTaskDate) {
-        maxTaskDate = task.end;
-      }
+    if (!task || typeof task !== "object" || task.type === "empty") {
+      continue; // Skip invalid or empty tasks
     }
-  }
+  
+    if (!task.start || !task.end || !(task.start instanceof Date) || !(task.end instanceof Date)) {
+      console.warn("Invalid task detected and skipped:", task);
+      continue; // Skip tasks without valid start/end dates
+    }
+  
+    if (!minTaskDate || task.start < minTaskDate) {
+      minTaskDate = task.start;
+    }
+  
+    if (!maxTaskDate || task.end > maxTaskDate) {
+      maxTaskDate = task.end;
+    }
+  }     
 
   if (!minTaskDate || !maxTaskDate) {
     return [new Date(), new Date(), 2];

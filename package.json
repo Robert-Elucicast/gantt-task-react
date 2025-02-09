@@ -54,6 +54,7 @@
   "dependencies": {
     "@floating-ui/dom": "1.1.1",
     "@floating-ui/react": "0.19.2",
+    "@wamra/gantt-task-react": "file:wamra-gantt-task-react-0.6.17.tgz",
     "date-fns": "2.29.3"
   },
   "overrides": {
@@ -112,7 +113,7 @@
     "rollup-plugin-peer-deps-external": "2.2.4",
     "storybook": "7.6.20",
     "typescript": "~5.1.6",
-    "vite": "^4.5.5",
+    "vite": "^4.5.9",
     "vitest": "0.34.6"
   },
   "files": [
